@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditCandidateDescriptor;
 import seedu.address.model.candidate.ApplicationStatus;
 import seedu.address.model.candidate.Availability;
 import seedu.address.model.candidate.Candidate;
@@ -17,25 +17,25 @@ import seedu.address.model.candidate.StudentId;
 import seedu.address.model.tag.Tag;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditCandidateDescriptor objects.
  */
 public class EditCandidateDescriptorBuilder {
 
-    private EditPersonDescriptor descriptor;
+    private EditCandidateDescriptor descriptor;
 
     public EditCandidateDescriptorBuilder() {
-        descriptor = new EditPersonDescriptor();
+        descriptor = new EditCandidateDescriptor();
     }
 
-    public EditCandidateDescriptorBuilder(EditPersonDescriptor descriptor) {
-        this.descriptor = new EditPersonDescriptor(descriptor);
+    public EditCandidateDescriptorBuilder(EditCandidateDescriptor descriptor) {
+        this.descriptor = new EditCandidateDescriptor(descriptor);
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code candidate}'s details
+     * Returns an {@code EditCandidateDescriptor} with fields containing {@code candidate}'s details
      */
     public EditCandidateDescriptorBuilder(Candidate candidate) {
-        descriptor = new EditPersonDescriptor();
+        descriptor = new EditCandidateDescriptor();
         descriptor.setStudentId(candidate.getStudentId());
         descriptor.setName(candidate.getName());
         descriptor.setPhone(candidate.getPhone());
@@ -48,7 +48,7 @@ public class EditCandidateDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code StudentId} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code StudentId} of the {@code EditCandidateDescriptor} that we are building.
      */
     public EditCandidateDescriptorBuilder withStudentId(String id) {
         descriptor.setStudentId(new StudentId(id));
@@ -56,7 +56,7 @@ public class EditCandidateDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code EditCandidateDescriptor} that we are building.
      */
     public EditCandidateDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
@@ -64,7 +64,7 @@ public class EditCandidateDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Phone} of the {@code EditCandidateDescriptor} that we are building.
      */
     public EditCandidateDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
@@ -72,7 +72,7 @@ public class EditCandidateDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Email} of the {@code EditCandidateDescriptor} that we are building.
      */
     public EditCandidateDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
@@ -80,7 +80,7 @@ public class EditCandidateDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Course} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Course} of the {@code EditCandidateDescriptor} that we are building.
      */
     public EditCandidateDescriptorBuilder withCourse(String course) {
         descriptor.setCourse(new Course(course));
@@ -88,7 +88,7 @@ public class EditCandidateDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditCandidateDescriptor}
      * that we are building.
      */
     public EditCandidateDescriptorBuilder withTags(String... tags) {
@@ -97,12 +97,12 @@ public class EditCandidateDescriptorBuilder {
         return this;
     }
 
-    public EditPersonDescriptor build() {
+    public EditCandidateDescriptor build() {
         return descriptor;
     }
 
     /**
-     * Sets the {@code ApplicationStatus} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code ApplicationStatus} of the {@code EditCandidateDescriptor} that we are building.
      */
     public EditCandidateDescriptorBuilder withApplicationStatus(String applicationStatus) {
         descriptor.setApplicationStatus(new ApplicationStatus(applicationStatus));
@@ -110,7 +110,7 @@ public class EditCandidateDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code InterviewStatus} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code InterviewStatus} of the {@code EditCandidateDescriptor} that we are building.
      */
     public EditCandidateDescriptorBuilder withInterviewStatus(String interviewStatus) {
         descriptor.setInterviewStatus(new InterviewStatus(interviewStatus));
@@ -118,7 +118,7 @@ public class EditCandidateDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Availability} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Availability} of the {@code EditCandidateDescriptor} that we are building.
      */
     public EditCandidateDescriptorBuilder withAvailability(String availability) {
         descriptor.setAvailability(new Availability(availability));

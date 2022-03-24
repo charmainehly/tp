@@ -7,7 +7,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.model.candidate.Candidate;
 
 /**
- * Represents a predicate of whether the (@code Person) contains specific keywords.
+ * Represents a predicate of whether the (@code Candidate) contains specific keywords.
  * Contains hidden internal logic and the ability to be executed.
  */
 public abstract class ContainsKeywordsPredicate implements Predicate<Candidate> {

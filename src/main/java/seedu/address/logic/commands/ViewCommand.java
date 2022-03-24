@@ -9,7 +9,7 @@ import seedu.address.model.Model;
 import seedu.address.model.interview.Interview;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all candidates in the address book to the user.
  */
 public class ViewCommand extends Command {
 

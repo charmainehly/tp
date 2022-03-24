@@ -15,7 +15,7 @@ import seedu.address.model.interview.Interview;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Candidate> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Candidate> PREDICATE_SHOW_ALL_CANDIDATES = unused -> true;
 
     /** {@code Predicate} that always evaluate to false */
     Predicate<Candidate> PREDICATE_SHOW_EMPTY_LIST = unused -> false;
@@ -77,28 +77,29 @@ public interface Model {
     ReadOnlyInterviewSchedule getInterviewSchedule();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a candidate with the same identity as {@code candidate} exists in the address book.
      */
-    boolean hasPerson(Candidate candidate);
+    boolean hasCandidate(Candidate candidate);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given candidate.
+     * The candidate must exist in the address book.
      */
-    void deletePerson(Candidate target);
+    void deleteCandidate(Candidate target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given candidate.
+     * {@code candidate} must not already exist in the address book.
      */
-    void addPerson(Candidate candidate);
+    void addCandidate(Candidate candidate);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given candidate {@code target} with {@code editedCandidate}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The candidate identity of {@code editedCandidate} must not be the same
+     * as another existing candidate in the address book.
      */
-    void setPerson(Candidate target, Candidate editedCandidate);
+    void setCandidate(Candidate target, Candidate editedCandidate);
 
     boolean hasInterviewCandidate(Interview interview);
 
@@ -110,18 +111,18 @@ public interface Model {
 
     //void setInterview(Interview target, Interview editedInterview);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Candidate> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered candidate list */
+    ObservableList<Candidate> getFilteredCandidateList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered candidate list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Candidate> predicate);
+    void updateFilteredCandidateList(Predicate<Candidate> predicate);
 
     /**
-     * Updates the sorting order of filtered person list to sort by the given {@code sortComparator}.
+     * Updates the sorting order of filtered candidate list to sort by the given {@code sortComparator}.
      * @throws NullPointerException if {@code sortKey} is null.
      */
-    void updateSortedPersonList(Comparator<Candidate> sortComparator);
+    void updateSortedCandidateList(Comparator<Candidate> sortComparator);
 }

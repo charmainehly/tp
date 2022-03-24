@@ -10,8 +10,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_ID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_ID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalCandidates.ALICE;
+import static seedu.address.testutil.TypicalCandidates.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,38 +26,38 @@ public class CandidateTest {
     }
 
     @Test
-    public void isSamePerson() {
+    public void isSameCandidate() {
         // same object -> returns true
-        assertTrue(ALICE.isSamePerson(ALICE));
+        assertTrue(ALICE.isSameCandidate(ALICE));
 
         // null -> returns false
-        assertFalse(ALICE.isSamePerson(null));
+        assertFalse(ALICE.isSameCandidate(null));
 
         // same name, all other attributes different -> returns true
         Candidate editedAlice = new CandidateBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withCourse(VALID_COURSE_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        assertTrue(ALICE.isSameCandidate(editedAlice));
 
         // different studentId, all other attributes same -> returns false
         editedAlice = new CandidateBuilder(ALICE).withStudentId(VALID_STUDENT_ID_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        assertFalse(ALICE.isSameCandidate(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
         Candidate editedBob = new CandidateBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertTrue(BOB.isSamePerson(editedBob));
+        assertTrue(BOB.isSameCandidate(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new CandidateBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertTrue(BOB.isSamePerson(editedBob));
+        assertTrue(BOB.isSameCandidate(editedBob));
 
         // different studentId, all other attributes same -> returns false
         editedBob = new CandidateBuilder(BOB).withStudentId(VALID_STUDENT_ID_AMY).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        assertFalse(BOB.isSameCandidate(editedBob));
 
         // totally different candidates
-        assertFalse(ALICE.isSamePerson(BOB));
-        assertFalse(BOB.isSamePerson(ALICE));
+        assertFalse(ALICE.isSameCandidate(BOB));
+        assertFalse(BOB.isSameCandidate(ALICE));
     }
 
     @Test
@@ -75,7 +75,7 @@ public class CandidateTest {
         // different type -> returns false
         assertFalse(ALICE.equals(5));
 
-        // different person -> returns false
+        // different candidate -> returns false
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false

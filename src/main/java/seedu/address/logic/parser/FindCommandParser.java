@@ -11,10 +11,10 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.candidate.predicate.CandidateContainsKeywordsPredicate;
 import seedu.address.model.candidate.predicate.CourseContainsKeywordsPredicate;
 import seedu.address.model.candidate.predicate.EmailContainsKeywordsPredicate;
 import seedu.address.model.candidate.predicate.NameContainsKeywordsPredicate;
-import seedu.address.model.candidate.predicate.PersonContainsKeywordsPredicate;
 import seedu.address.model.candidate.predicate.PhoneContainsKeywordsPredicate;
 import seedu.address.model.candidate.predicate.StudentIdContainsKeywordsPredicate;
 
@@ -55,15 +55,15 @@ public class FindCommandParser implements Parser<FindCommand> {
             return new FindCommand(new CourseContainsKeywordsPredicate(keywords));
         case "name":
             return new FindCommand(new NameContainsKeywordsPredicate(keywords));
-        case "person":
+        case "candidate":
         case "":
-            return new FindCommand(new PersonContainsKeywordsPredicate(keywords));
+            return new FindCommand(new CandidateContainsKeywordsPredicate(keywords));
         case "phone":
             return new FindCommand(new PhoneContainsKeywordsPredicate(keywords));
         case "studentid":
             return new FindCommand(new StudentIdContainsKeywordsPredicate(keywords));
         default:
-            return new FindCommand(new PersonContainsKeywordsPredicate(Collections.<String>emptyList()));
+            return new FindCommand(new CandidateContainsKeywordsPredicate(Collections.<String>emptyList()));
         }
     }
 

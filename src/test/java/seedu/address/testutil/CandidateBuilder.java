@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Candidate objects.
  */
 public class CandidateBuilder {
 
@@ -78,7 +78,7 @@ public class CandidateBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Candidate} that we are building.
      */
     public CandidateBuilder withName(String name) {
         this.name = new Name(name);
@@ -86,7 +86,7 @@ public class CandidateBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Candidate} that we are building.
      */
     public CandidateBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
@@ -94,7 +94,7 @@ public class CandidateBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Phone} of the {@code Candidate} that we are building.
      */
     public CandidateBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
@@ -102,7 +102,7 @@ public class CandidateBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Email} of the {@code Candidate} that we are building.
      */
     public CandidateBuilder withEmail(String email) {
         this.email = new Email(email);
@@ -134,7 +134,7 @@ public class CandidateBuilder {
     }
 
     /**
-     * Sets the {@code Availability} of the {@code Person} that we are building.
+     * Sets the {@code Availability} of the {@code Candidate} that we are building.
      */
     public CandidateBuilder withAvailability(String availability) {
         this.availability = new Availability(availability);
@@ -142,8 +142,8 @@ public class CandidateBuilder {
     }
 
     /**
-     * Returns a new Person with specific fields.
-     * @return a new Person.
+     * Returns a new Candidate with specific fields.
+     * @return a new Candidate.
      */
     public Candidate build() {
         return new Candidate(studentId, name, phone, email, course, tags,

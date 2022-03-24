@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CANDIDATE;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -17,7 +17,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditCandidateDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -27,7 +27,7 @@ import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.candidate.Candidate;
-import seedu.address.model.candidate.predicate.PersonContainsKeywordsPredicate;
+import seedu.address.model.candidate.predicate.CandidateContainsKeywordsPredicate;
 import seedu.address.testutil.CandidateBuilder;
 import seedu.address.testutil.CandidateUtil;
 import seedu.address.testutil.EditCandidateDescriptorBuilder;
@@ -52,17 +52,17 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_CANDIDATE.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST_CANDIDATE), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
         Candidate candidate = new CandidateBuilder().build();
-        EditPersonDescriptor descriptor = new EditCandidateDescriptorBuilder(candidate).build();
+        EditCandidateDescriptor descriptor = new EditCandidateDescriptorBuilder(candidate).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + CandidateUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST_CANDIDATE.getOneBased() + " " + CandidateUtil.getEditCandidateDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_CANDIDATE, descriptor), command);
     }
 
     @Test
@@ -76,7 +76,7 @@ public class AddressBookParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + "k/foo k/bar k/baz f/");
-        assertEquals(new FindCommand(new PersonContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new CandidateContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
@@ -99,9 +99,9 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_schedule() throws Exception {
         ScheduleCommand command = (ScheduleCommand) parser.parseCommand(
-                ScheduleCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
+                ScheduleCommand.COMMAND_WORD + " " + INDEX_FIRST_CANDIDATE.getOneBased()
                         + " /at 01/01/2023 10:00");
-        assertEquals(new ScheduleCommand(INDEX_FIRST_PERSON,
+        assertEquals(new ScheduleCommand(INDEX_FIRST_CANDIDATE,
                 LocalDateTime.of(2023, 01, 01, 10, 00)), command);
     }
 

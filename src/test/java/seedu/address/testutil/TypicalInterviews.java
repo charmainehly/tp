@@ -15,29 +15,29 @@ import seedu.address.model.interview.Interview;
 
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Candidate} objects to be used in tests.
  */
 public class TypicalInterviews {
     public static final LocalDateTime TYPICAL_INTERVIEW_DATE_TIME = LocalDateTime.of(2022, Month.DECEMBER, 23, 10, 00);
 
-    public static final Interview INTERVIEW_ALICE = new InterviewBuilder().withCandidate(TypicalPersons.ALICE)
+    public static final Interview INTERVIEW_ALICE = new InterviewBuilder().withCandidate(TypicalCandidates.ALICE)
             .withInterviewDateTime(VALID_ALICE_INTERVIEW_DATE_TIME).build();
-    public static final Interview INTERVIEW_BENSON = new InterviewBuilder().withCandidate(TypicalPersons.BENSON)
+    public static final Interview INTERVIEW_BENSON = new InterviewBuilder().withCandidate(TypicalCandidates.BENSON)
             .withInterviewDateTime(VALID_BENSON_INTERVIEW_DATE_TIME).build();
-    public static final Interview INTERVIEW_CARL = new InterviewBuilder().withCandidate(TypicalPersons.CARL)
+    public static final Interview INTERVIEW_CARL = new InterviewBuilder().withCandidate(TypicalCandidates.CARL)
             .withInterviewDateTime(VALID_CARL_INTERVIEW_DATE_TIME).build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Interview INTERVIEW_AMY_TYPICAL = new InterviewBuilder().withCandidate(TypicalPersons.AMY)
+    // Manually added - Candidate's details found in {@code CommandTestUtil}
+    public static final Interview INTERVIEW_AMY_TYPICAL = new InterviewBuilder().withCandidate(TypicalCandidates.AMY)
             .withInterviewDateTime(TYPICAL_INTERVIEW_DATE_TIME).build();
-    public static final Interview INTERVIEW_BOB_TYPICAL = new InterviewBuilder().withCandidate(TypicalPersons.BOB)
+    public static final Interview INTERVIEW_BOB_TYPICAL = new InterviewBuilder().withCandidate(TypicalCandidates.BOB)
             .withInterviewDateTime(TYPICAL_INTERVIEW_DATE_TIME).build();
 
 
     private TypicalInterviews() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code AddressBook} with all the typical candidates.
      */
     public static InterviewSchedule getTypicalInterviewSchedule() {
         InterviewSchedule schedule = new InterviewSchedule();

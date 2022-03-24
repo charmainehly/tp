@@ -12,7 +12,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.candidate.predicate.CourseContainsKeywordsPredicate;
 import seedu.address.model.candidate.predicate.EmailContainsKeywordsPredicate;
 import seedu.address.model.candidate.predicate.NameContainsKeywordsPredicate;
-import seedu.address.model.candidate.predicate.PersonContainsKeywordsPredicate;
+import seedu.address.model.candidate.predicate.CandidateContainsKeywordsPredicate;
 import seedu.address.model.candidate.predicate.PhoneContainsKeywordsPredicate;
 import seedu.address.model.candidate.predicate.StudentIdContainsKeywordsPredicate;
 
@@ -81,19 +81,19 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindPersonCommand() {
+    public void parse_validArgs_returnsFindCandidateCommand() {
         // no leading and trailing whitespaces
-        FindCommand expectedFindPersonCommand =
-                new FindCommand(new PersonContainsKeywordsPredicate(Arrays.asList("Amy", "computer science")));
-        assertParseSuccess(parser, " k/Amy k/computer science f/person", expectedFindPersonCommand);
+        FindCommand expectedFindCandidateCommand =
+                new FindCommand(new CandidateContainsKeywordsPredicate(Arrays.asList("Amy", "computer science")));
+        assertParseSuccess(parser, " k/Amy k/computer science f/candidate", expectedFindCandidateCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, "    k/Amy \t  k/computer science  \t  f/person \t", expectedFindPersonCommand);
+        assertParseSuccess(parser, "    k/Amy \t  k/computer science  \t  f/candidate \t", expectedFindCandidateCommand);
 
         // no field specified
-        assertParseSuccess(parser, "    k/Amy \t  k/computer science  \t  f/ \t", expectedFindPersonCommand);
+        assertParseSuccess(parser, "    k/Amy \t  k/computer science  \t  f/ \t", expectedFindCandidateCommand);
 
         // no field specified
-        assertParseSuccess(parser, "    k/Amy \t  k/computer science  \t  \t", expectedFindPersonCommand);
+        assertParseSuccess(parser, "    k/Amy \t  k/computer science  \t  \t", expectedFindCandidateCommand);
     }
 }

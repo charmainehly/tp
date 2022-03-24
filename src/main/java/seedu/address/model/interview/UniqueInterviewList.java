@@ -18,7 +18,7 @@ public class UniqueInterviewList implements Iterable<Interview> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent candidate as the given argument.
      */
     public boolean containsSameCandidate(Interview toCheck) {
         requireNonNull(toCheck);
@@ -26,7 +26,7 @@ public class UniqueInterviewList implements Iterable<Interview> {
     }
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent candidate as the given argument.
      */
     public boolean containsConflictingInterview(Interview toCheck) {
         requireNonNull(toCheck);
@@ -34,7 +34,7 @@ public class UniqueInterviewList implements Iterable<Interview> {
     }
     /**
      * Adds an interview to the list.
-     * The person must not already exist in the list.
+     * The candidate must not already exist in the list.
      */
     public void add(Interview toAdd) {
         requireNonNull(toAdd);
@@ -47,9 +47,9 @@ public class UniqueInterviewList implements Iterable<Interview> {
         internalList.add(toAdd);
     }
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the candidate {@code target} in the list with {@code editedCandidate}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The candidate identity of {@code editedCandidate} must not be the same as another existing candidate in the list.
      */
     public void setInterview(Interview target, Interview editedInterview) {
         requireAllNonNull(target, editedInterview);
@@ -84,8 +84,8 @@ public class UniqueInterviewList implements Iterable<Interview> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code candidates}.
+     * {@code candidates} must not contain duplicate candidates.
      */
     public void setInterviews(List<Interview> interviews) {
         requireAllNonNull(interviews);
@@ -134,7 +134,7 @@ public class UniqueInterviewList implements Iterable<Interview> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code candidates} contains only unique candidates.
      */
     private boolean interviewsCandidatesAreUnique(List<Interview> interviews) {
         for (int i = 0; i < interviews.size() - 1; i++) {
@@ -147,7 +147,7 @@ public class UniqueInterviewList implements Iterable<Interview> {
         return true;
     }
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code candidates} contains only unique candidates.
      */
     private boolean interviewsDateTimeAreUnique(List<Interview> interviews) {
         for (int i = 0; i < interviews.size() - 1; i++) {

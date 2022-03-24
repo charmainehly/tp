@@ -9,8 +9,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_COURSE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INTERVIEW_NOT_SCHEDULED;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalCandidates.ALICE;
+import static seedu.address.testutil.TypicalCandidates.getTypicalAddressBook;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,7 +24,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.candidate.Candidate;
-import seedu.address.model.candidate.exceptions.DuplicatePersonException;
+import seedu.address.model.candidate.exceptions.DuplicateCandidateException;
 import seedu.address.testutil.CandidateBuilder;
 
 public class AddressBookTest {
@@ -33,7 +33,7 @@ public class AddressBookTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getCandidateList());
     }
 
     @Test
@@ -49,8 +49,8 @@ public class AddressBookTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
+    public void resetData_withDuplicateCandidates_throwsDuplicateCandidateException() {
+        // Two candidates with the same identity fields
         Candidate editedAlice = new CandidateBuilder(ALICE).withCourse(VALID_COURSE_BOB).withTags(VALID_TAG_HUSBAND)
                 .withApplicationStatus(VALID_APPLICATION_PENDING)
                 .withInterviewStatus(VALID_INTERVIEW_NOT_SCHEDULED)
@@ -59,53 +59,53 @@ public class AddressBookTest {
         List<Candidate> newCandidates = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newCandidates);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateCandidateException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
-    public void sortPersons_basedOnName_returnsSortedList() {
-        ObservableList<Candidate> newData = addressBook.getPersonList();
-        List<Candidate> personsCopy = new ArrayList<Candidate>(newData);
+    public void sortCandidates_basedOnName_returnsSortedList() {
+        ObservableList<Candidate> newData = addressBook.getCandidateList();
+        List<Candidate> candidatesCopy = new ArrayList<Candidate>(newData);
         Comparator<Candidate> sortComparator = Comparator.comparing(l -> l.getName().toString().toLowerCase());
-        personsCopy.sort(sortComparator);
-        addressBook.setPersons(newData);
-        addressBook.sortPersons(newData, sortComparator);
+        candidatesCopy.sort(sortComparator);
+        addressBook.setCandidates(newData);
+        addressBook.sortCandidates(newData, sortComparator);
 
-        assertEquals(personsCopy, addressBook.getPersonList());
+        assertEquals(candidatesCopy, addressBook.getCandidateList());
     }
 
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+    public void hasCandidate_nullCandidate_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasCandidate(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+    public void hasCandidate_candidateNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasCandidate(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+    public void hasCandidate_candidateInAddressBook_returnsTrue() {
+        addressBook.addCandidate(ALICE);
+        assertTrue(addressBook.hasCandidate(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
+    public void hasCandidate_candidateWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.addCandidate(ALICE);
         Candidate editedAlice = new CandidateBuilder(ALICE).withCourse(VALID_COURSE_BOB).withTags(VALID_TAG_HUSBAND)
                 .withAvailability(VALID_AVAILABILITY_BOB).build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(addressBook.hasCandidate(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    public void getCandidateList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getCandidateList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyAddressBook whose candidates list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Candidate> candidates = FXCollections.observableArrayList();
@@ -115,7 +115,7 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<Candidate> getPersonList() {
+        public ObservableList<Candidate> getCandidateList() {
             return candidates;
         }
     }

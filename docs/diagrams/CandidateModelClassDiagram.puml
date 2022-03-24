@@ -4,12 +4,12 @@ skinparam arrowThickness 0.5
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-AddressBook *-right-> "1" UniquePersonList
+AddressBook *-right-> "1" UniqueCandidateList
 AddressBook *-right-> "1" UniqueInterviewList
 UniqueInterviewList -[hidden]down- UniqueInterviewList
 
 UniqueInterviewList *-right-> "*" Interview
-UniquePersonList -right-> Candidate
+UniqueCandidateList -right-> Candidate
 
 Candidate -up-> "1" Interview
 

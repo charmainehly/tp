@@ -41,7 +41,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
 
         this.interviewSchedule = new InterviewSchedule(interviewList);
-        filteredCandidates = new FilteredList<>(this.addressBook.getPersonList());
+        filteredCandidates = new FilteredList<>(this.addressBook.getCandidateList());
     }
 
     public ModelManager() {
@@ -107,27 +107,27 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Candidate candidate) {
+    public boolean hasCandidate(Candidate candidate) {
         requireNonNull(candidate);
-        return addressBook.hasPerson(candidate);
+        return addressBook.hasCandidate(candidate);
     }
 
     @Override
-    public void deletePerson(Candidate target) {
-        addressBook.removePerson(target);
+    public void deleteCandidate(Candidate target) {
+        addressBook.removeCandidate(target);
     }
 
     @Override
-    public void addPerson(Candidate candidate) {
-        addressBook.addPerson(candidate);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addCandidate(Candidate candidate) {
+        addressBook.addCandidate(candidate);
+        updateFilteredCandidateList(PREDICATE_SHOW_ALL_CANDIDATES);
     }
 
     @Override
-    public void setPerson(Candidate target, Candidate editedCandidate) {
+    public void setCandidate(Candidate target, Candidate editedCandidate) {
         requireAllNonNull(target, editedCandidate);
 
-        addressBook.setPerson(target, editedCandidate);
+        addressBook.setCandidate(target, editedCandidate);
     }
 
     //=========== InterviewSchedule ================================================================================
@@ -162,7 +162,7 @@ public class ModelManager implements Model {
     @Override
     public void addInterview(Interview interview) {
         interviewSchedule.addInterview(interview);
-        //updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        //updateFilteredCandidateList(PREDICATE_SHOW_ALL_CANDIDATES);
     }
 
     /*@Override
@@ -172,26 +172,26 @@ public class ModelManager implements Model {
         interviewSchedule.setInterview(target, editedInterview);
     }*/
 
-    //=========== Filtered/Sort Person List Accessors =============================================================
+    //=========== Filtered/Sort Candidate List Accessors =============================================================
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Candidate} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Candidate> getFilteredPersonList() {
+    public ObservableList<Candidate> getFilteredCandidateList() {
         return filteredCandidates;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Candidate> predicate) {
+    public void updateFilteredCandidateList(Predicate<Candidate> predicate) {
         requireNonNull(predicate);
         filteredCandidates.setPredicate(predicate);
     }
 
     @Override
-    public void updateSortedPersonList(Comparator<Candidate> sortComparator) {
+    public void updateSortedCandidateList(Comparator<Candidate> sortComparator) {
         requireNonNull(sortComparator);
-        addressBook.sortPersons(filteredCandidates, sortComparator);
+        addressBook.sortCandidates(filteredCandidates, sortComparator);
     }
 
     @Override

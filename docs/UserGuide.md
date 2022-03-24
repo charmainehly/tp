@@ -93,22 +93,22 @@ Displays all TAs found in the system.
 Format: `list`
 
 <!-- For Edit TA in the future
-### Editing a person : `edit`
+### Editing a candidate : `edit`
 
-Edits an existing person in the address book.
+Edits an existing candidate in the address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the candidate at the specified `INDEX`. The index refers to the index number shown in the displayed candidate list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the candidate will be removed i.e. adding of tags is not cumulative.
+* You can remove all the candidate’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st candidate to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd candidate to be `Betsy Crower` and clears all existing tags.
 *  `edit 3 as/Accepted is/Interviewing` Edits the Application Status and Interview Status of the Candidate.
 -->
 
@@ -119,13 +119,13 @@ Finds and lists TAs whose attribute field(s) contain(s) any of the given keyword
 Format: `find k/KEYWORD [k/MORE_KEYWORDS]... f/ATTRIBUTE_FIELD`
 
 Note: `ATTRIBUTE_FIELD` can take on the following values
-`course`, `email`, `name`, `phone`, `person`, `studentid`
+`course`, `email`, `name`, `phone`, `candidate`, `studentid`
 
 
 * The keyword search is case-insensitive. e.g `hans` will match `Hans`
 * The attribute field is case-insensitive. e.g. `NAME` is equivalent to `name`
 * The search will return a list of all TAs containing any of the specified keyword(s) in the specified attribute field.
-* For `f/person`, the search will find keywords across all attribute fields of the TA records.
+* For `f/candidate`, the search will find keywords across all attribute fields of the TA records.
 * Only full keywords will be matched
   e.g. `k/jane doe f/name` will not match TAs with name `jane koe` or just `jane`
 * TAs matching at least one full keyword (in the specified attribute field) will be returned i.e. OR search,
@@ -144,7 +144,7 @@ Returns a list of TAs sorted by the specified attribute field.
 Format: `sort s/ATTRIBUTE_FIELD`
 
 Note: `ATTRIBUTE_FIELD` can take on the following values
-`course`, `email`, `name`, `phone`, `person`, `studentid`
+`course`, `email`, `name`, `phone`, `candidate`, `studentid`
 
 * The attribute field is case-insensitive. e.g. `NAME` is equivalent to `name`
 * The search will return a list of all TAs sorted in ascending order 
@@ -177,7 +177,7 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by delete 2 deletes the 2nd candidate in the candidate list.
-* `find k/bernice k/alex f/name` followed by delete 1 deletes the 1st person in the results of the find command.
+* `find k/bernice k/alex f/name` followed by delete 1 deletes the 1st candidate in the results of the find command.
 
 ### Scheduling a candidate for an interview : `schedule` [Work-In-Progress]
 

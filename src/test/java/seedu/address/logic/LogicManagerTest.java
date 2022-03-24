@@ -11,7 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.STUDENT_ID_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLICATION_PENDING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INTERVIEW_NOT_SCHEDULED;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.AMY;
+import static seedu.address.testutil.TypicalCandidates.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -95,14 +95,14 @@ public class LogicManagerTest {
                 .withApplicationStatus(VALID_APPLICATION_PENDING)
                 .withInterviewStatus(VALID_INTERVIEW_NOT_SCHEDULED).build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedCandidate);
+        expectedModel.addCandidate(expectedCandidate);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    public void getFilteredCandidateList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredCandidateList().remove(0));
     }
 
     /**

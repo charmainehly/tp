@@ -57,13 +57,13 @@ public class ScheduleCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Candidate> lastShownList = model.getFilteredPersonList();
+        List<Candidate> lastShownList = model.getFilteredCandidateList();
         if (lastShownList.isEmpty()) {
             throw new CommandException(String.format(Messages.MESSAGE_NO_CANDIDATES_IN_SYSTEM));
         }
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_CANDIDATE_DISPLAYED_INDEX);
         }
 
         Candidate candidateToInterview = lastShownList.get(targetIndex.getZeroBased());

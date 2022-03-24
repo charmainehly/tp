@@ -29,28 +29,28 @@ import seedu.address.testutil.CandidateBuilder;
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullCandidate_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+    public void execute_candidateAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingCandidateAdded modelStub = new ModelStubAcceptingCandidateAdded();
         Candidate validCandidate = new CandidateBuilder().build();
 
         CommandResult commandResult = new AddCommand(validCandidate).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validCandidate), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validCandidate), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validCandidate), modelStub.candidatesAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateCandidate_throwsCommandException() {
         Candidate validCandidate = new CandidateBuilder().build();
         AddCommand addCommand = new AddCommand(validCandidate);
-        ModelStub modelStub = new ModelStubWithPerson(validCandidate);
+        ModelStub modelStub = new ModelStubWithCandidate(validCandidate);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_CANDIDATE, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -73,7 +73,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different candidate -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -122,7 +122,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Candidate candidate) {
+        public void addCandidate(Candidate candidate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -147,17 +147,17 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Candidate candidate) {
+        public boolean hasCandidate(Candidate candidate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Candidate target) {
+        public void deleteCandidate(Candidate target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Candidate target, Candidate editedCandidate) {
+        public void setCandidate(Candidate target, Candidate editedCandidate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -177,55 +177,55 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Candidate> getFilteredPersonList() {
+        public ObservableList<Candidate> getFilteredCandidateList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Candidate> predicate) {
+        public void updateFilteredCandidateList(Predicate<Candidate> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateSortedPersonList(Comparator<Candidate> sortKey) {
+        public void updateSortedCandidateList(Comparator<Candidate> sortKey) {
             throw new AssertionError("This method should not be called.");
         }
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single candidate.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithCandidate extends ModelStub {
         private final Candidate candidate;
 
-        ModelStubWithPerson(Candidate candidate) {
+        ModelStubWithCandidate(Candidate candidate) {
             requireNonNull(candidate);
             this.candidate = candidate;
         }
 
         @Override
-        public boolean hasPerson(Candidate candidate) {
+        public boolean hasCandidate(Candidate candidate) {
             requireNonNull(candidate);
-            return this.candidate.isSamePerson(candidate);
+            return this.candidate.isSameCandidate(candidate);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the candidate being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Candidate> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingCandidateAdded extends ModelStub {
+        final ArrayList<Candidate> candidatesAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Candidate candidate) {
+        public boolean hasCandidate(Candidate candidate) {
             requireNonNull(candidate);
-            return personsAdded.stream().anyMatch(candidate::isSamePerson);
+            return candidatesAdded.stream().anyMatch(candidate::isSameCandidate);
         }
 
         @Override
-        public void addPerson(Candidate candidate) {
+        public void addCandidate(Candidate candidate) {
             requireNonNull(candidate);
-            personsAdded.add(candidate);
+            candidatesAdded.add(candidate);
         }
 
         @Override

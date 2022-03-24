@@ -8,15 +8,15 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.candidate.Candidate;
-import seedu.address.model.candidate.UniquePersonList;
+import seedu.address.model.candidate.UniqueCandidateList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameCandidate comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList candidates;
+    private final UniqueCandidateList candidates;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,13 +26,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        candidates = new UniquePersonList();
+        candidates = new UniqueCandidateList();
     }
 
     public AddressBook() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an AddressBook using the Candidates in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -42,23 +42,23 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the candidate list with {@code candidates}.
+     * {@code candidates} must not contain duplicate candidates.
      */
-    public void setPersons(List<Candidate> candidates) {
-        this.candidates.setPersons(candidates);
+    public void setCandidates(List<Candidate> candidates) {
+        this.candidates.setCandidates(candidates);
     }
 
     /**
-     * Reorders the contents of the person list by comparator on {@code sortKey}.
-     * {@code persons} must not contain duplicate persons.
+     * Reorders the contents of the candidate list by comparator on {@code sortKey}.
+     * {@code candidates} must not contain duplicate candidates.
      */
-    public void sortPersons(List<Candidate> persons, Comparator<Candidate> sortComparator) {
-        requireNonNull(persons);
+    public void sortCandidates(List<Candidate> candidates, Comparator<Candidate> sortComparator) {
+        requireNonNull(candidates);
         requireNonNull(sortComparator);
-        List<Candidate> personsCopy = new ArrayList<Candidate>(persons);
-        personsCopy.sort(sortComparator);
-        this.candidates.setPersons(personsCopy);
+        List<Candidate> candidatesCopy = new ArrayList<Candidate>(candidates);
+        candidatesCopy.sort(sortComparator);
+        this.candidates.setCandidates(candidatesCopy);
     }
 
     /**
@@ -67,43 +67,44 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setCandidates(newData.getCandidateList());
     }
 
-    //// person-level operations
+    //// candidate-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a candidate with the same identity as {@code candidate} exists in the address book.
      */
-    public boolean hasPerson(Candidate candidate) {
+    public boolean hasCandidate(Candidate candidate) {
         requireNonNull(candidate);
         return candidates.contains(candidate);
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a candidate to the address book.
+     * The candidate must not already exist in the address book.
      */
-    public void addPerson(Candidate p) {
+    public void addCandidate(Candidate p) {
         candidates.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given candidate {@code target} in the list with {@code editedCandidate}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The candidate identity of {@code editedCandidate} must not be the same as another existing
+     * candidate in the address book.
      */
-    public void setPerson(Candidate target, Candidate editedCandidate) {
+    public void setCandidate(Candidate target, Candidate editedCandidate) {
         requireNonNull(editedCandidate);
 
-        candidates.setPerson(target, editedCandidate);
+        candidates.setCandidate(target, editedCandidate);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Candidate key) {
+    public void removeCandidate(Candidate key) {
         candidates.remove(key);
     }
 
@@ -111,12 +112,12 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return candidates.asUnmodifiableObservableList().size() + " persons";
+        return candidates.asUnmodifiableObservableList().size() + " candidates";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Candidate> getPersonList() {
+    public ObservableList<Candidate> getCandidateList() {
         return candidates.asUnmodifiableObservableList();
     }
 

@@ -13,12 +13,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditCandidateDescriptor;
 import seedu.address.model.candidate.Candidate;
 import seedu.address.model.tag.Tag;
 
 /**
- * A utility class for Person.
+ * A utility class for Candidate.
  */
 public class CandidateUtil {
 
@@ -26,13 +26,13 @@ public class CandidateUtil {
      * Returns an add command string for adding the {@code candidate}.
      */
     public static String getAddCommand(Candidate candidate) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(candidate);
+        return AddCommand.COMMAND_WORD + " " + getCandidateDetails(candidate);
     }
 
     /**
      * Returns the part of command string for the given {@code candidate}'s details.
      */
-    public static String getPersonDetails(Candidate candidate) {
+    public static String getCandidateDetails(Candidate candidate) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_ID + candidate.getStudentId().studentId + " ");
         sb.append(PREFIX_NAME + candidate.getName().fullName + " ");
@@ -46,9 +46,9 @@ public class CandidateUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditCandidateDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
+    public static String getEditCandidateDescriptorDetails(EditCandidateDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getStudentId().ifPresent(id -> sb.append(PREFIX_ID).append(id.studentId).append(" "));
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));

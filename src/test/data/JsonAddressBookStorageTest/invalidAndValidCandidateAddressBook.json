@@ -1,7 +1,7 @@
 {
-  "persons": [ {
+  "candidates": [ {
     "studentId": "E0123456",
-    "name": "Valid Person",
+    "name": "Valid Candidate",
     "phone": "94824240",
     "email": "E0123456@u.nus.edu",
     "course": "Computer Science",
@@ -10,7 +10,7 @@
     "availability": "1,2,3,4,5,6,7"
   }, {
     "studentId": "E0123456",
-    "name": "Person With Invalid Phone Field",
+    "name": "Candidate With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "E0123456@u.nus.edu",
     "course": "Computer Science",

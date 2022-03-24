@@ -38,8 +38,8 @@ public interface Logic {
      */
     ReadOnlyInterviewSchedule getInterviewSchedule();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Candidate> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of candidates */
+    ObservableList<Candidate> getFilteredCandidateList();
 
     /**
      * Returns the user prefs' address book file path.

@@ -37,7 +37,7 @@ public class StudentIdContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different candidate -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 

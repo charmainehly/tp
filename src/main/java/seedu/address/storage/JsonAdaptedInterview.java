@@ -44,7 +44,7 @@ class JsonAdaptedInterview {
     private final String interviewDateTime;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedCandidate} with the given candidate details.
      */
     @JsonCreator
     public JsonAdaptedInterview(@JsonProperty("studentID") String studentID, @JsonProperty("name") String name,
@@ -70,7 +70,7 @@ class JsonAdaptedInterview {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Candidate} into this class for Jackson use.
      */
     public JsonAdaptedInterview(Interview source) {
         studentID = source.getCandidate().getStudentId().studentId;
@@ -90,12 +90,12 @@ class JsonAdaptedInterview {
     /**
      * Converts this Jackson-friendly adapted interview object into the model's {@code Interview} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted candidate.
      */
     public Interview toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> candidateTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            candidateTags.add(tag.toModelType());
         }
 
         if (studentID == null) {
@@ -148,7 +148,7 @@ class JsonAdaptedInterview {
         }
         final Availability modelAvailability = new Availability(availability);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(candidateTags);
 
         Candidate candidate = new Candidate(modelId, modelName, modelPhone, modelEmail, modelCourse, modelTags,
                 new ApplicationStatus(applicationStatus), new InterviewStatus(interviewStatus), modelAvailability);

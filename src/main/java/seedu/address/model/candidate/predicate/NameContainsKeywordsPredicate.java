@@ -7,7 +7,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.model.candidate.Candidate;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Candidate}'s {@code Name} matches any of the keywords given.
  */
 public class NameContainsKeywordsPredicate extends ContainsKeywordsPredicate implements Predicate<Candidate> {
     private final List<String> keywords;
@@ -15,7 +15,7 @@ public class NameContainsKeywordsPredicate extends ContainsKeywordsPredicate imp
     /**
      * Creates a new {@link NameContainsKeywordsPredicate} object with the
      * {@link NameContainsKeywordsPredicate#keywords} initialised.
-     * @param keywords contain keyword(s) to find in {@code Person}'s {@code Name}.
+     * @param keywords contain keyword(s) to find in {@code Candidate}'s {@code Name}.
      */
     public NameContainsKeywordsPredicate(List<String> keywords) {
         super(keywords);
@@ -23,7 +23,7 @@ public class NameContainsKeywordsPredicate extends ContainsKeywordsPredicate imp
     }
 
     /**
-     * Tests if any part of {@code Person}'s {@code Name} matches any of the specified
+     * Tests if any part of {@code Candidate}'s {@code Name} matches any of the specified
      * {@link NameContainsKeywordsPredicate#keywords}.
      * @param candidate object to retrieve the {@code Name}.
      * @return true if a match is found, and false otherwise.

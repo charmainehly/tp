@@ -10,11 +10,11 @@ import javafx.scene.layout.Region;
 import seedu.address.model.candidate.Candidate;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Candidate}.
  */
-public class PersonCard extends UiPart<Region> {
+public class CandidateCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "CandidateListCard.fxml";
     private static final String APPLICATION_STATUS_MSG = "Application Status : ";
     private static final String INTERVIEW_STATUS_MSG = "Interview Status : ";
     private static final String AVAILABILITY_MSG = "Availability: ";
@@ -50,9 +50,9 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code CandidateCode} with the given {@code Candidate} and index to display.
      */
-    public PersonCard(Candidate candidate, int displayedIndex) {
+    public CandidateCard(Candidate candidate, int displayedIndex) {
         super(FXML);
         this.candidate = candidate;
         id.setText(displayedIndex + ". ");
@@ -76,12 +76,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof CandidateCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        CandidateCard card = (CandidateCard) other;
         return id.getText().equals(card.id.getText())
                 && candidate.equals(card.candidate);
     }

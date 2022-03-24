@@ -4,7 +4,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.ViewCommand.MESSAGE_NO_INTERVIEWS_IN_SYSTEM;
 import static seedu.address.logic.commands.ViewCommand.MESSAGE_SUCCESS;
 import static seedu.address.testutil.TypicalInterviews.getTypicalInterviewSchedule;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalCandidates.getTypicalAddressBook;
 
 import java.util.Comparator;
 import java.util.stream.Collectors;

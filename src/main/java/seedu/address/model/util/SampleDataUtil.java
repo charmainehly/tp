@@ -27,7 +27,7 @@ public class SampleDataUtil {
     private static final ApplicationStatus PENDING = new ApplicationStatus("pending");
     private static final InterviewStatus INTERVIEW_NOT_SCHEDULED = new InterviewStatus("Not Scheduled");
 
-    public static Candidate[] getSamplePersons() {
+    public static Candidate[] getSampleCandidates() {
         return new Candidate[] {
             new Candidate(new StudentId("E0123456"), new Name("Alex Yeoh"), new Phone("87438807"),
                 new Email("E0123456@u.nus.edu"), new Course("Business Analytics"),
@@ -52,8 +52,8 @@ public class SampleDataUtil {
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Candidate sampleCandidate : getSamplePersons()) {
-            sampleAb.addPerson(sampleCandidate);
+        for (Candidate sampleCandidate : getSampleCandidates()) {
+            sampleAb.addCandidate(sampleCandidate);
         }
         return sampleAb;
     }

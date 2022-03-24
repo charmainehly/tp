@@ -19,16 +19,16 @@ import seedu.address.model.candidate.Candidate;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_CANDIDATE = "Candidates list contains duplicate candidate(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedCandidate> candidates = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given candidates.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableAddressBook(@JsonProperty("candidates") List<JsonAdaptedCandidate> candidates) {
+        this.candidates.addAll(candidates);
     }
 
     /**
@@ -37,7 +37,8 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        candidates.addAll(
+                source.getCandidateList().stream().map(JsonAdaptedCandidate::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,12 +48,12 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Candidate candidate = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(candidate)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+        for (JsonAdaptedCandidate jsonAdaptedCandidate : candidates) {
+            Candidate candidate = jsonAdaptedCandidate.toModelType();
+            if (addressBook.hasCandidate(candidate)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_CANDIDATE);
             }
-            addressBook.addPerson(candidate);
+            addressBook.addCandidate(candidate);
         }
         return addressBook;
     }

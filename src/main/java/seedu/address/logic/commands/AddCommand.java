@@ -18,7 +18,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a candidate to the address book. "
             + "Parameters: "
             + PREFIX_ID + "ID "
             + PREFIX_NAME + "NAME "
@@ -33,7 +33,7 @@ public class AddCommand extends Command {
             + PREFIX_AVAILABILITY + "1,2,3,4,5,6,7";
 
     public static final String MESSAGE_SUCCESS = "New candidate added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This candidate already exists in the system";
+    public static final String MESSAGE_DUPLICATE_CANDIDATE = "This candidate already exists in the system";
 
     private final Candidate toAdd;
 
@@ -49,11 +49,11 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasCandidate(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_CANDIDATE);
         }
 
-        model.addPerson(toAdd);
+        model.addCandidate(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

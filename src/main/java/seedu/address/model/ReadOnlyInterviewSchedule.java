@@ -8,8 +8,8 @@ import seedu.address.model.interview.Interview;
  */
 public interface ReadOnlyInterviewSchedule {
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the candidates list.
+     * This list will not contain any duplicate candidates.
      */
     ObservableList<Interview> getInterviewList();
 }

@@ -9,7 +9,7 @@ import static seedu.address.testutil.TypicalInterviews.INTERVIEW_AMY_TYPICAL;
 import static seedu.address.testutil.TypicalInterviews.INTERVIEW_BOB_TYPICAL;
 import static seedu.address.testutil.TypicalInterviews.TYPICAL_INTERVIEW_DATE_TIME;
 import static seedu.address.testutil.TypicalInterviews.getTypicalInterviewSchedule;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalCandidates.BOB;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -120,7 +120,7 @@ public class InterviewScheduleTest {
     }
 
     /**
-     * A stub ReadOnlyInterviewSchedule whose persons list can violate interface constraints.
+     * A stub ReadOnlyInterviewSchedule whose candidates list can violate interface constraints.
      */
     private static class InterviewScheduleStub implements ReadOnlyInterviewSchedule {
         private final ObservableList<Interview> interviews = FXCollections.observableArrayList();

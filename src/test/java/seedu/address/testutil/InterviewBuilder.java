@@ -14,7 +14,7 @@ public class InterviewBuilder {
     private LocalDateTime interviewDateTime;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code CandidateBuilder} with the default details.
      */
     public InterviewBuilder() {
         candidate = new CandidateBuilder().build();

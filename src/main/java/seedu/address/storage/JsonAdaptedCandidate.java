@@ -25,9 +25,9 @@ import seedu.address.model.tag.Tag;
 /**
  * Jackson-friendly version of {@link Candidate}.
  */
-class JsonAdaptedPerson {
+class JsonAdaptedCandidate {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Candidate's %s field is missing!";
 
     private final String studentId;
     private final String name;
@@ -40,10 +40,10 @@ class JsonAdaptedPerson {
     private final String availability;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedCandidate} with the given candidate details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("studentId") String studentId, @JsonProperty("name") String name,
+    public JsonAdaptedCandidate(@JsonProperty("studentId") String studentId, @JsonProperty("name") String name,
             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
             @JsonProperty("course") String course, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("applicationStatus") String applicationStatus,
@@ -63,9 +63,9 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Candidate} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Candidate source) {
+    public JsonAdaptedCandidate(Candidate source) {
         studentId = source.getStudentId().studentId;
         name = source.getName().fullName;
         phone = source.getPhone().value;
@@ -80,14 +80,14 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted candidate object into the model's {@code Candidate} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted candidate.
      */
     public Candidate toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> candidateTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            candidateTags.add(tag.toModelType());
         }
 
         if (studentId == null) {
@@ -140,7 +140,7 @@ class JsonAdaptedPerson {
         }
         final Availability modelAvailability = new Availability(availability);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(candidateTags);
         return new Candidate(modelId, modelName, modelPhone, modelEmail, modelCourse, modelTags,
                 new ApplicationStatus(applicationStatus), new InterviewStatus(interviewStatus), modelAvailability);
     }
