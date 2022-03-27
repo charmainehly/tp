@@ -12,6 +12,7 @@ import seedu.address.model.interview.predicate.AllWithinTimePeriodPredicate;
 import seedu.address.model.interview.predicate.ThisMonthWithinTimePeriodPredicate;
 import seedu.address.model.interview.predicate.ThisWeekWithinTimePeriodPredicate;
 import seedu.address.model.interview.predicate.TodayWithinTimePeriodPredicate;
+import seedu.address.model.interview.predicate.UpcomingWithinTimePeriodPredicate;
 
 /**
  * Parses input arguments and creates a new ViewCommand object
@@ -46,6 +47,9 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         case "month":
             logger.info("Time period parsed - month");
             return new ViewCommand(new ThisMonthWithinTimePeriodPredicate(now));
+        case "month":
+            logger.info("Time period parsed - upcoming");
+            return new ViewCommand(new UpcomingWithinTimePeriodPredicate(now));
         case "all":
         case "":
         default:

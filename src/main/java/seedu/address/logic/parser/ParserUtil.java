@@ -60,6 +60,7 @@ public class ParserUtil {
                 && !trimmedTimePeriod.equalsIgnoreCase("week")
                 && !trimmedTimePeriod.equalsIgnoreCase("month")
                 && !trimmedTimePeriod.equalsIgnoreCase("all")
+                && !trimmedTimePeriod.equalsIgnoreCase("upcoming")
                 && !trimmedTimePeriod.equalsIgnoreCase("")) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
