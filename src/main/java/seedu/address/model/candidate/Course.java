@@ -3,8 +3,6 @@ package seedu.address.model.candidate;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.Arrays;
-
 /**
  * Represents a Candidate's course in TAlent Assistant™.
  * Guarantees: immutable; is valid as declared in {@link #isValidCourse(String)}
