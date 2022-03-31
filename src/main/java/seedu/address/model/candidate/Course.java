@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Course {
     public static final String MESSAGE_CONSTRAINTS =
             "Courses should only contain alphabets, and it should not be blank\n"
-            + "Accepting only an exact match of a Computing course from this list\n"
+            + "Accepting only courses from this list:\n"
             + "1. Business Analytics\n2. Computer Engineering\n"
             + "3. Computer Science\n4. Information Security\n5. Information Systems";
     private static final String[] COURSES = {
@@ -41,7 +41,7 @@ public class Course {
         }
 
         for (int index = 0; index < COURSES.length; ++index) {
-            if (test.equals(COURSES[index]) && test.length() == LENGTHS[index]) {
+            if (test.equalsIgnoreCase(COURSES[index]) && test.length() == LENGTHS[index]) {
                 return true;
             }
         }

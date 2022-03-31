@@ -24,8 +24,8 @@ public class CourseTest {
         assertThrows(NullPointerException.class, () -> Course.isValidCourse(null));
 
         // Invalid course
-        assertFalse(Course.isValidCourse("computer science"));
-        assertFalse(Course.isValidCourse("computer Science"));
+        assertTrue(Course.isValidCourse("computer science"));
+        assertTrue(Course.isValidCourse("computer Science"));
         assertFalse(Course.isValidCourse("computer science."));
         assertFalse(Course.isValidCourse("computer science "));
         assertFalse(Course.isValidCourse(" computer science"));
