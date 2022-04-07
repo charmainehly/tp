@@ -322,6 +322,8 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             int editFlag = -1;
+            boolean isExecuted = false;
+            CommandResult commandResult = new CommandResult("");
 
             if (commandText.contains(DeleteScheduleCommand.COMMAND_WORD)
                     || commandText.contains(RemarkCommand.COMMAND_WORD)
@@ -331,12 +333,14 @@ public class MainWindow extends UiPart<Stage> {
                 handleDelete(commandText);
             } else if (commandText.contains(EditCommand.COMMAND_WORD)) {
                 try {
-                    CommandResult commandResult = logic.execute(commandText);
+                    commandResult = logic.execute(commandText);
                     logger.info("Result: " + commandResult.getFeedbackToUser());
                     resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
                     clearFocusCard();
                 } catch (CommandException e) {
                     throw e;
+                } finally {
+                    isExecuted = true;
                 }
             } else if (commandText.contains(AddScheduleCommand.COMMAND_WORD)) {
                 editFlag = handleEdit(commandText, ADD_SCHEDULE_COMMAND_INDEX);
@@ -346,23 +350,24 @@ public class MainWindow extends UiPart<Stage> {
                 clearFocusCard();
             }
 
-            CommandResult commandResult = logic.execute(commandText);
+            if (!isExecuted) {
+                commandResult = logic.execute(commandText);
 
+                if (commandResult.isShowHelp()) {
+                    handleHelp();
+                }
 
-            if (commandResult.isShowHelp()) {
-                handleHelp();
-            }
+                if (commandResult.isExit()) {
+                    handleExit();
+                }
 
-            if (commandResult.isExit()) {
-                handleExit();
-            }
+                if (commandResult.isShowFocus()) {
+                    handleFocus(commandResult);
+                }
 
-            if (commandResult.isShowFocus()) {
-                handleFocus(commandResult);
-            }
-
-            if (editFlag != -1) {
-                executeCommand(FocusCommand.COMMAND_WORD + " " + editFlag);
+                if (editFlag != -1) {
+                    executeCommand(FocusCommand.COMMAND_WORD + " " + editFlag);
+                }
             }
 
             logger.info("Result: " + commandResult.getFeedbackToUser());
