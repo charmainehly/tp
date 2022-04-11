@@ -1126,4 +1126,3 @@ testers are expected to do more *exploratory* testing.
    
    3. Test case: Modify a `Candidate`'s phone number to start with any digit other than 6, 8 or 9 while the application is running.</br>
       Expected: Application continues to run smoothly.
-
